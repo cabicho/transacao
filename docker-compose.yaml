@@ -1,0 +1,47 @@
+#docker-compose.yaml
+version: "3.3"
+services:
+  app:
+    build: . 
+    #// considerar o Dockerfile presente no directorio
+    # tranfirido para o dockerfie e run 
+    entrypoint: sh -c "npm install && npm run start:dev" 
+    volumes:
+      - .:/home/node/app 
+      #// copiando na minha maquina e passando para o container 
+      #// sempre que fizer qualquer alteracao
+      #// o caminho do workdir da pasta de container e’ identico
+      #// a do dockerfile
+    ports:
+      - 7000:9000 #//nossa maquina porta 8000, (localhost=7000):(main.ts listen=9000), porta do container
+    depends_on:
+      - db
+      
+  db:
+    image:      mongo:5.0.5
+    restart:    always
+    volumes:
+      - ./.docker/dbdata:/data/db
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_ROOT_DATABASE=analytics
+    
+
+  #// e’ a interface de web para poder gerenciar o mongo
+  mongo-express:
+    image: mongo-express:0.54.0
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=db #// nome do container na corrente linha 19 
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=root #// autenticacao
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=root
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root #// usuario administrativo
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=root
+    depends_on:
+      - db
+
