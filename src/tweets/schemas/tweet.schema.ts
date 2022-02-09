@@ -176,9 +176,8 @@ export const TweetSchema = SchemaFactory.createForClass(Tweet);
 
 
 //vendo novos tweets que chegaram no banco de dados
-
-//10 novos tweets chegarem
-
-//enviar um novo e-mail para uma listinha
+    // o que posso fazer para analisar o bd => Task, Cronjob
+//enviar um novo e-mail para uma lista
+//quando 10 novos tweets chegarem
 
 // modelar como orientacao ao objecto

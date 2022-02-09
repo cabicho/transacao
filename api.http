@@ -1,1 +1,4 @@
-Get http://localhost 
+Get https://7000-cs-554035150597-default.cs-asia-southeast1-yelo.cloudshell.dev/?authuser=0/tweets
+
+###
+Post https://7000-cs-554035150597-default.cs-asia-southeast1-yelo.cloudshell.dev/?authuser=0/tweets
