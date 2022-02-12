@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, CacheModule } from '@nestjs/common';
 import { TweetsService } from './tweets.service';
 import { TweetsController } from './tweets.controller';
 
@@ -9,6 +9,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+      CacheModule.register({
+        
+      }),
       MongooseModule.forFeature([{
           name: Tweet.name, 
           schema: TweetSchema

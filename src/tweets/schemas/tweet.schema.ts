@@ -40,8 +40,10 @@ export class TweetUser {
   URL: string;
   @Prop({ type: Boolean })
   Protected: boolean;
+
   @Prop()
   FollowersCount: number;
+
   @Prop()
   ProfileBackgroundColor: string;
   @Prop()

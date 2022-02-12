@@ -19,8 +19,8 @@ export class TweetsService {
     return this.tweetModel.create(createTweetDto); //'This action adds a new tweet';
   }
 
-  findAll() {
-    return this.tweetModel.find().exec() //`This action returns all tweets`;
+  findAll({offset, limit}:{offset: number; limit: number}={offset:0, limit:50}) {
+    return this.tweetModel.find().skip(offset).limit(limit).exec() //`This action returns all tweets`;
   }
 
   findOne(id: number) {
